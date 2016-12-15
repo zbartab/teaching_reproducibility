@@ -1,0 +1,40 @@
+
+
+```{r options, echo=FALSE}
+opts_knit$set(progress = TRUE, verbose = TRUE)
+opts_chunk$set(echo = FALSE)
+```
+
+```{r load-data, results="hide"}
+b.df <- read.csv("../data/badge.csv")
+```
+
+According to the figure below, the badge size increases with wing
+length, however it seems to have some effect of the sex too.
+
+```{r plot-data, results="hide"}
+png(file="../work/badge_wing-length.png", width=6, height=6, units="in",
+		res=600)
+plot(badge.size ~ wing.length, b.df, type="n", xlab="wing length [mm]",
+		 ylab="badge size [mm^2]")
+points(badge.size ~ wing.length, b.df, subset = sex == "female")
+points(badge.size ~ wing.length, b.df, subset = sex == "male", pch=16)
+legend("topleft", legend=levels(b.df$sex), pch=c(1,16), bty="n",
+			 title="sex")
+dev.off()
+```
+
+![The relation between wing length and badge size, for males and
+females](work/badge_wing-length.png)
+
+```{r analyse-data, results="hide"}
+z <- lm(badge.size ~ wing.length * sex, b.df)
+z1 <- update(z, .~. - wing.length:sex)
+a <- anova(z1)
+```
+
+The statistical analysis fully supports the above observations. Badge
+size increases with wing length (*F*~`r paste(a$Df[c(1,3)], collapse=",")`~ = 
+`r round(a$"F value"[1], 2)`, *p* = `r round(a$"Pr(>F)"[1], 3)`) and
+males have larger sized badges (*F*~`r paste(a$Df[c(2,3)], collapse=",")`~ = 
+`r round(a$"F value"[2], 2)`, *p* = `r round(a$"Pr(>F)"[2], 3)`).
