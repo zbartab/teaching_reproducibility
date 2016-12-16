@@ -23,5 +23,5 @@ m4_include(《work/results.md》)
 
 # Discussion
 
-This is a nice result. oh realy??
+This is a nice result. Oh realy??
 
