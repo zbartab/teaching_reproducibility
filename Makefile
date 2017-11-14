@@ -6,6 +6,7 @@ work/paper.docx: work/paper.md4
 	pandoc -t docx -o work/paper.docx work/paper.md4
 
 work/paper.html: work/paper.md4
+	convert work/badge_wing-length.png -resize 600x600 work/badge_wing-length.png
 	sed -i -e 's+(work/badge+(badge+' work/paper.md4
 	pandoc -t html -o work/paper.html work/paper.md4
 
