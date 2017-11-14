@@ -8,8 +8,14 @@ date: m4_syscmd(《date》)
 
 # Introduction
 
-It is a very interesting problem of how badge size relate to body size and
-sex. Here we analyse this interesting problem.
+## Theory done
+
+It is a __very interesting__ problem of how badge size relate to body size and
+sex. Here we analyse this _interesting_ problem.
+
+## Previous empirical work
+
+There were a couple of papers before.
 
 # Methods
 

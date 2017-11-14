@@ -15,12 +15,14 @@ length, however it seems to have some effect of the sex too.
 ```{r plot-data, results="hide"}
 png(file="../work/badge_wing-length.png", width=6, height=6, units="in",
 		res=600)
+opar <- par(mar=c(5,5,1,1)+0.1)
 plot(badge.size ~ wing.length, b.df, type="n", xlab="wing length [mm]",
-		 ylab="badge size [mm^2]")
+		 ylab=expression(paste("badge size [", mm^2, "]", sep="")))
 points(badge.size ~ wing.length, b.df, subset = sex == "female")
 points(badge.size ~ wing.length, b.df, subset = sex == "male", pch=16)
 legend("topleft", legend=levels(b.df$sex), pch=c(1,16), bty="n",
 			 title="sex")
+par(opar)
 dev.off()
 ```
 
