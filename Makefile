@@ -1,6 +1,11 @@
 
+pdf: work/paper.pdf
 docx: work/paper.docx
 html: work/paper.html
+
+work/paper.pdf: work/paper.md4
+	sed -i -e 's+(work/badge+(badge+' work/paper.md4
+	cd work/ && pandoc -t latex -o paper.pdf paper.md4
 
 work/paper.docx: work/paper.md4
 	pandoc -t docx -o work/paper.docx work/paper.md4
@@ -17,4 +22,4 @@ work/results.md: doc/results.Rmd data/badge.csv
 work/paper.md4: doc/paper.md work/results.md
 	m4 -P doc/paper.md > work/paper.md4
 
-.PHONY: docx html
+.PHONY: docx html pdf
