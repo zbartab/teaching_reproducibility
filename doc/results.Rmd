@@ -7,9 +7,12 @@ opts_chunk$set(echo = FALSE)
 
 ```{r load-data, results="hide"}
 b.df <- read.csv("../data/badge.csv")
+# elírt adat, eredeti jegyzőkönyv alapján korrigálva
+b.df$wing.length[b.df$wing.length > 120] <- 70
 ```
 
-According to the figure below, the badge size increases with wing
+According to the figure below (Figure 1), the badge size increases with
+wing
 length, however it seems to have some effect of the sex too.
 
 ```{r plot-data, results="hide"}
@@ -40,3 +43,11 @@ size increases with wing length (*F*~`r paste(a$Df[c(1,3)], collapse=",")`~ =
 `r round(a$"F value"[1], 2)`, *p* = `r round(a$"Pr(>F)"[1], 3)`) and
 males have larger sized badges (*F*~`r paste(a$Df[c(2,3)], collapse=",")`~ = 
 `r round(a$"F value"[2], 2)`, *p* = `r round(a$"Pr(>F)"[2], 3)`).
+
+<!--
+
+```{r versions}
+sessionInfo()
+```
+
+-->
